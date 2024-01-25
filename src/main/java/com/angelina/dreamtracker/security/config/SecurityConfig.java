@@ -19,13 +19,16 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-
+    private static final String[] WHITE_LIST_URL = {
+            "/api/v1/auth/**",
+            "endpoint",
+            "endpoint"};
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("")
+                .authorizeHttpRequests(req -> req
+                        .requestMatchers(WHITE_LIST_URL)
                         .permitAll()
                         .anyRequest()
                         .authenticated())
