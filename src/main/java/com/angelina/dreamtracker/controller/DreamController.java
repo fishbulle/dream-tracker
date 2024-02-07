@@ -40,7 +40,7 @@ public class DreamController {
         }
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<?> updateDream(@RequestBody UpdateDreamRequest request) {
         try {
             service.updateDream(request);
