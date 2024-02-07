@@ -41,6 +41,12 @@ public class DreamService {
         }
     }
 
+    public void deleteDream(UUID dreamId, UUID userId) throws Exception {
+        if (isValidDelete(dreamId, userId)) {
+            dreamRepository.deleteById(dreamId);
+        }
+    }
+
     private User validateUserId(UUID id) throws Exception {
         return userRepository.findById(id)
                 .orElseThrow(() -> new Exception("No user found with ID: " + id));
@@ -83,6 +89,17 @@ public class DreamService {
 
         if (!Objects.equals(user.getId(), dream.getUser().getId()))
             throw new Exception("Only the user who dreamt this dream can update it.");
+        return true;
+    }
+
+    public boolean isValidDelete(UUID dreamId, UUID userId) throws Exception {
+        Dream dream = validateDreamId(dreamId);
+        User user = validateUserId(userId);
+
+        if (dream.getUser() != user) {
+            throw new Exception("You don't have the authority to delete this dream.");
+        }
+
         return true;
     }
 

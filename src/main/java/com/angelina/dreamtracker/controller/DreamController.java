@@ -50,5 +50,14 @@ public class DreamController {
         }
     }
 
-    /* TODO add methods for DELETING dream */
+    @DeleteMapping("/delete/{dreamId}")
+    public ResponseEntity<?> deleteDream(@PathVariable UUID dreamId,
+                                         @RequestParam UUID userId) {
+        try {
+            service.deleteDream(dreamId, userId);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Something went wrong, and I don't know why ...");
+        }
+    }
 }
