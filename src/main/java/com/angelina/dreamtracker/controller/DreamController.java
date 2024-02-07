@@ -2,6 +2,7 @@ package com.angelina.dreamtracker.controller;
 
 import com.angelina.dreamtracker.dto.DreamResponse;
 import com.angelina.dreamtracker.dto.NewDreamRequest;
+import com.angelina.dreamtracker.dto.UpdateDreamRequest;
 import com.angelina.dreamtracker.service.DreamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,4 +39,16 @@ public class DreamController {
             return ResponseEntity.internalServerError().body("Something went wrong, and I don't know why...");
         }
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<?> updateDream(@RequestBody UpdateDreamRequest request) {
+        try {
+            service.updateDream(request);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Something went wrong, and I don't know why...");
+        }
+    }
+
+    /* TODO add methods for DELETING dream */
 }
