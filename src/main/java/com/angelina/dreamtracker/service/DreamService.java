@@ -64,7 +64,14 @@ public class DreamService {
                 dream.setCategory(request.category());
             }
             if (request.tags() != null) {
-                dream.setTags(Collections.singletonList(request.tags()));
+               List<String> newTags = request.tags();
+               List<String> existingTags = dream.getTags();
+
+               if (existingTags != null) {
+                   newTags.addAll(existingTags);
+               }
+
+               dream.setTags(newTags);
             }
 
             dreamRepository.save(dream);

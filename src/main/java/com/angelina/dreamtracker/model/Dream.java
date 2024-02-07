@@ -1,5 +1,6 @@
 package com.angelina.dreamtracker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Dream {
 
     // instead of oneToMany (one dream can have several tags)
     @ElementCollection
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<String> tags;
 
     @ManyToOne
