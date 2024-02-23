@@ -24,9 +24,9 @@ public class Dream {
     private String category;
 
     // instead of oneToMany (one dream can have several tags)
-    @ElementCollection
+/*    @ElementCollection
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private List<String> tags;
+    private List<String> tags;*/
 
     @ManyToOne
     @JoinColumn(name = "user_id")

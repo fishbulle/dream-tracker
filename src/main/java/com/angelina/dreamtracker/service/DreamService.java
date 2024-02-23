@@ -22,7 +22,7 @@ public class DreamService {
     public void newDream(NewDreamRequest request) throws Exception {
         User user = validateUserId(request.userId());
         Dream newDream = new Dream(null, request.title(), request.content(), request.category(),
-                request.tags(), user);
+                 user);
 
         dreamRepository.save(newDream);
     }
@@ -69,7 +69,7 @@ public class DreamService {
             if (request.category() != null) {
                 dream.setCategory(request.category());
             }
-            if (request.tags() != null) {
+/*            if (request.tags() != null) {
                List<String> newTags = request.tags();
                List<String> existingTags = dream.getTags();
 
@@ -78,7 +78,7 @@ public class DreamService {
                }
 
                dream.setTags(newTags);
-            }
+            }*/
 
             dreamRepository.save(dream);
     }
@@ -109,7 +109,7 @@ public class DreamService {
                 dream.getTitle(),
                 dream.getContent(),
                 dream.getCategory(),
-                dream.getTags(),
+                // dream.getTags(),
                 dream.getUser().getId()
         );
     }

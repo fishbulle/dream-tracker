@@ -7,5 +7,5 @@ public record DreamResponse(UUID dreamId,
                             String title,
                             String content,
                             String category,
-                            List<String> tags,
+                            // List<String> tags,
                             UUID userId) {}

@@ -10,5 +10,5 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-
+    /* TODO: add method for updating user (email, name) ? */
 }

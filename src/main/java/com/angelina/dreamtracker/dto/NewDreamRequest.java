@@ -6,6 +6,6 @@ import java.util.UUID;
 public record NewDreamRequest(String title,
                               String content,
                               String category,
-                              List<String> tags,
+                              // List<String> tags,
                               UUID userId) {
 }
