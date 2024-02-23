@@ -1,5 +1,6 @@
 package com.angelina.dreamtracker.security.auth;
 
+import com.angelina.dreamtracker.exception.AccountAlreadyExists;
 import com.angelina.dreamtracker.model.Role;
 import com.angelina.dreamtracker.model.User;
 import com.angelina.dreamtracker.repository.UserRepository;
@@ -20,12 +21,15 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws AccountAlreadyExists {
+
+        if (userRepository.existsByEmail(request.email()))
+            throw new AccountAlreadyExists("There already exists an account with this email.");
+
         var user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .nickname(request.nickname())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
                 .role(Role.USER)
                 .build();
 
@@ -50,13 +54,13 @@ public class AuthenticationService {
                 .orElseThrow(() -> new UsernameNotFoundException("Username couldn't be found."));
         var jwtToken = jwtService.generateToken(user);
         var userId = user.getId();
-        var username = user.getUsername();
+        var nickname = user.getNickname();
 
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
                 .userId(userId)
-                .username(username)
+                .nickname(nickname)
                 .build();
     }
 }

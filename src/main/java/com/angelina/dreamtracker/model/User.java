@@ -26,12 +26,9 @@ public class User implements UserDetails {
     @Column(name = "id")
     private UUID id;
 
-    @Column(unique = true)
+    private String nickname;
     private String email;
-
     private String password;
-    private String firstName;
-    private String lastName;
 
     @Enumerated(EnumType.STRING)
     private Role role;

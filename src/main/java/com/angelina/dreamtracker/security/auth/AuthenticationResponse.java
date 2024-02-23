@@ -15,5 +15,5 @@ public class AuthenticationResponse {
 
     String token;
     UUID userId;
-    String username;
+    String nickname;
 }
