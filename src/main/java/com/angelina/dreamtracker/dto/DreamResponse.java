@@ -1,5 +1,7 @@
 package com.angelina.dreamtracker.dto;
 
+import com.angelina.dreamtracker.model.enums.Type;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -7,5 +9,5 @@ public record DreamResponse(UUID dreamId,
                             String title,
                             String content,
                             String category,
-                            // List<String> tags,
+                            Type type,
                             UUID userId) {}
