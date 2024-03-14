@@ -1,5 +1,6 @@
 package com.angelina.dreamtracker.model;
 
+import com.angelina.dreamtracker.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
