@@ -1,7 +1,7 @@
 package com.angelina.dreamtracker.security.auth;
 
 import com.angelina.dreamtracker.exception.AccountAlreadyExists;
-import com.angelina.dreamtracker.model.Role;
+import com.angelina.dreamtracker.model.enums.Role;
 import com.angelina.dreamtracker.model.User;
 import com.angelina.dreamtracker.repository.UserRepository;
 import com.angelina.dreamtracker.security.config.JwtService;

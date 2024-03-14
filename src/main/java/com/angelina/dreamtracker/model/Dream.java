@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,18 +19,15 @@ public class Dream {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
+
+    @Column(columnDefinition = "text")
     private String content;
     private String category;
 
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    // instead of oneToMany (one dream can have several tags)
-/*    @ElementCollection
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private List<String> tags;*/
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
