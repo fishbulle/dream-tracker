@@ -22,7 +22,7 @@ application:
   security:
     jwt:
       secret-key: ${SECRET_KEY}
-      expiration: 86400000 # a day
+      expiration: 1800000 # 30 minutes
 
 server:
   error:
